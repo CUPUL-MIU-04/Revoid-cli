@@ -1,0 +1,80 @@
+name: 🐞 Bug report
+description: Report a bug or an issue.
+title: 'bug: '
+labels: ['Bug report']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <p align="center">
+          <picture>
+            <source
+              width="256px"
+              media="(prefers-color-scheme: dark)"
+              srcset="https://raw.githubusercontent.com/cupul-miu-04/revoid-cli/main/assets/revanced-headline/revanced-headline-vertical-dark.svg"
+            >
+            <img 
+              width="256px"
+              src="https://raw.githubusercontent.com/cupul-miu-04/revoid-cli/main/assets/revanced-headline/revanced-headline-vertical-light.svg"
+            >
+          </picture>
+          <br>
+          <a href="https://github.com/cupul-miu-04/revoid-cli">
+             <picture>
+                 <source height="24px" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cupul-miu-04/revoid-cli/main/assets/revanced-logo/revanced-logo.svg" />
+                 <img height="24px" src="https://raw.githubusercontent.com/cupul-miu-04/revoid-cli/main/assets/revanced-logo/revanced-logo.svg" />
+             </picture>
+           </a>&nbsp;&nbsp;&nbsp;
+           <a href="https://github.com/cupul-miu-04">
+               <picture>
+                   <source height="24px" media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/dMMmCrW/Git-Hub-Mark.png" />
+                   <img height="24px" src="https://i.ibb.co/9wV3HGF/Git-Hub-Mark-Light.png" />
+               </picture>
+           </a>
+           <br>
+           <br>
+           ReVoid CLI - Fork de ReVanced
+        </p>
+
+        # ReVoid CLI bug report
+
+        Before creating a new bug report, please keep the following in mind:
+
+        - **Do not submit a duplicate bug report**: Search for existing bug reports [here](https://github.com/cupul-miu-04/revoid-cli/issues?q=label%3A%22Bug+report%22).
+        - **Review the contribution guidelines**: Make sure your bug report adheres to it. You can find the guidelines [here](https://github.com/cupul-miu-04/revoid-cli/blob/main/CONTRIBUTING.md).
+        - **Do not use the issue page for support**: If you need help or have questions, check the main ReVanced project on [revanced.app](https://revanced.app).
+  - type: textarea
+    attributes:
+      label: Bug description
+      description: |
+        - Describe your bug in detail
+        - Add steps to reproduce the bug if possible (Step 1. ... Step 2. ...)
+        - Add images and videos if possible
+        - List used patches if applicable
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Error logs
+      description: Exceptions can be captured by running `logcat | grep AndroidRuntime` in a shell.
+      render: shell
+  - type: textarea
+    attributes:
+      label: Solution
+      description: If applicable, add a possible solution to the bug.
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add additional context here.
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      description: Your bug report will be closed if you don't follow the checklist below.
+      options:
+        - label: I have checked all open and closed bug reports and this is not a duplicate.
+          required: true
+        - label: I have chosen an appropriate title.
+          required: true
+        - label: All requested information has been provided properly.
+          required: true
