@@ -10,8 +10,9 @@ plugins {
 
 group = "com.revoid"
 
-val githubUser = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
-val githubToken = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+// CAMBIO AQUÍ: Usar SECRET_USER y SECRET_TOKEN en lugar de GITHUB_ACTOR/GITHUB_TOKEN
+val githubUser = project.findProperty("gpr.user") as String? ?: System.getenv("SECRET_USER")
+val githubToken = project.findProperty("gpr.key") as String? ?: System.getenv("SECRET_TOKEN")
 
 application {
     mainClass = "com.revoid.cli.command.MainCommandKt"
