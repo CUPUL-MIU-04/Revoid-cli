@@ -10,7 +10,6 @@ plugins {
 
 group = "com.revoid"
 
-// CAMBIO AQUÍ: Usar SECRET_USER y SECRET_TOKEN en lugar de GITHUB_ACTOR/GITHUB_TOKEN
 val githubUser = project.findProperty("gpr.user") as String? ?: System.getenv("SECRET_USER")
 val githubToken = project.findProperty("gpr.key") as String? ?: System.getenv("SECRET_TOKEN")
 
@@ -21,27 +20,29 @@ application {
 repositories {
     mavenCentral()
     google()
+    
+    // Si tienes tus propias bibliotecas ReVoid en GitHub Packages
     maven {
-        // A repository must be specified for some reason. "registry" is a dummy.
-        url = uri("https://maven.pkg.github.com/inotia00/registry")
+        url = uri("https://maven.pkg.github.com/CUPUL-MIU-04/revoid-patcher")
         credentials {
-            username = githubUser
-            password = githubToken
+            username = githubUser ?: "dummy"
+            password = githubToken ?: "dummy"
         }
     }
     maven {
-        // A repository must be specified for some reason. "registry" is a dummy.
-        url = uri("https://maven.pkg.github.com/revanced/registry")
+        url = uri("https://maven.pkg.github.com/CUPUL-MIU-04/revoid-library")
         credentials {
-            username = githubUser
-            password = githubToken
+            username = githubUser ?: "dummy"
+            password = githubToken ?: "dummy"
         }
     }
 }
 
 dependencies {
-    implementation(libs.revanced.patcher)
-    implementation(libs.revanced.library)
+    // TUS propias implementaciones de ReVoid
+    implementation("com.revoid:patcher:1.0.0") // Ajusta la versión
+    implementation("com.revoid:library:1.0.0")  // Ajusta la versión
+    
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.picocli)
     implementation(libs.gson)
@@ -75,8 +76,7 @@ tasks {
         minimize {
             exclude(dependency("org.jetbrains.kotlin:.*"))
             exclude(dependency("org.bouncycastle:.*"))
-            exclude(dependency("app.revanced:.*"))
-            exclude(dependency("com.revoid:.*"))
+            exclude(dependency("com.revoid:.*")) // Cambiado de app.revanced a com.revoid
         }
     }
 
@@ -85,10 +85,6 @@ tasks {
     }
 }
 
-// Needed by gradle-semantic-release-plugin.
-// Tracking: https://github.com/KengoTODA/gradle-semantic-release-plugin/issues/435
-
-// The maven-publish is also necessary to make the signing plugin work.
 publishing {
     repositories {
         mavenLocal()
@@ -103,6 +99,5 @@ publishing {
 
 signing {
     useGpgCmd()
-
     sign(publishing.publications["revoid-cli-publication"])
 }
